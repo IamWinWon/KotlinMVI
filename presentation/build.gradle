@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    buildToolsVersion buildConfig.tools
+
+    defaultConfig {
+        applicationId buildConfig.id
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+        versionCode buildConfig.version.code
+        versionName buildConfig.version.name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "API_BASE_URL", URL_WS
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+}
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(appModules.data)
+    implementation deps.androidx.constraintlayout
+    implementation deps.androidx.recyclerview
+    implementation deps.androidx.cardview
+    implementation deps.androidx.viewModel
+    implementation deps.coil
+    implementation deps.androidx.liveData
+    implementation deps.dagger.common
+    implementation deps.squareup.converter_gson
+    implementation deps.stetho
+    implementation deps.material_component
+    implementation deps.dagger.common
+    debugImplementation deps.chuck.chuck_compile
+    releaseImplementation deps.chuck.chuck_release
+    kapt deps.dagger.compiler
+    testImplementation 'junit:junit:4.13'
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+}
