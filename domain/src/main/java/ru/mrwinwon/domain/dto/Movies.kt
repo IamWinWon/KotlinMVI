@@ -8,5 +8,5 @@ package ru.mrwinwon.domain.dto
 data class Movies (
 
     val movies : List<MovieRemote>,
-    val pagination : Pagination
+    private val pagination : Pagination
 )

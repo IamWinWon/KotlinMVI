@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -44,6 +43,7 @@ kapt {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(appModules.data)
+    implementation project(path: ':core')
     implementation deps.androidx.constraintlayout
     implementation deps.androidx.recyclerview
     implementation deps.androidx.cardview
@@ -58,7 +58,7 @@ dependencies {
     debugImplementation deps.chuck.chuck_compile
     releaseImplementation deps.chuck.chuck_release
     kapt deps.dagger.compiler
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.2'
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

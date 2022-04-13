@@ -7,7 +7,7 @@ package ru.mrwinwon.domain.dto
  */
 data class Pagination (
 
-    val current_page : String,
-    val end_page : String,
-    val total_pages : Int
+    private val current_page : String,
+    private val end_page : String,
+    private val total_pages : Int
 )

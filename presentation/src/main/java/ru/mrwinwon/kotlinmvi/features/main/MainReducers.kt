@@ -9,11 +9,21 @@ import ru.mrwinwon.domain.entities.MovieLocal
 * artem_winokurov@mail.ru
  */
 
-fun Result<List<MovieLocal>>.reduce(isSearchMode: Boolean = false): MainState {
+fun Result<List<MovieLocal>>.reduce(): MainState {
     return when (this) {
         is Result.Success -> {
-            if (isSearchMode) MainState.ResultSearch(data)
-            else MainState.ResultAllMovies(data)
+            MainState.ResultAllMovies(data as MutableList<MovieLocal>)
+        }
+        is Result.Error -> MainState.Exception(errors)
+        is Result.Loading -> MainState.Loading
+        else -> MainState.Loading
+    }
+}
+
+fun Result<MovieLocal>.reduce(isSearchMode: Boolean = true): MainState {
+    return when (this) {
+        is Result.Success -> {
+            MainState.ResultSearch((data as MovieLocal).toMU)
         }
         is Result.Error -> MainState.Exception(errors)
         is Result.Loading -> MainState.Loading

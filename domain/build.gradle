@@ -3,7 +3,9 @@ apply plugin: 'kotlin'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':core')
     implementation deps.jetbrains.stdlib
+    implementation deps.gson
 }
 
 sourceCompatibility = "1.8"

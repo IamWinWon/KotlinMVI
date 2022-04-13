@@ -8,7 +8,7 @@ import javax.inject.Inject
 /**
  * Created by Artem Winokurov on 14.04.2021.
  * MrWinWon
-* artem_winokurov@mail.ru
+ * artem_winokurov@mail.ru
  */
 class MainViewModel @Inject constructor(private val dataManager: MovieManager) :
     BaseViewModel<MainIntent, MainAction, MainState>() {
@@ -27,16 +27,16 @@ class MainViewModel @Inject constructor(private val dataManager: MovieManager) :
                     }
                 }
                 is MainAction.SearchMovie -> {
-//                    dataManager.searchMovie(action.id).collect {
-//                        localState.postValue(it.reduce(true))
-//                    }
+                    dataManager.searchMovie(action.id).collect {
+                        localState.postValue(it.reduce(true))
+                    }
                 }
             }
         }
     }
 
     override fun intentToAction(intent: MainIntent): MainAction {
-        return when(intent) {
+        return when (intent) {
             is MainIntent.LoadAllMovies -> MainAction.AllMovie
             is MainIntent.ClearSearch -> MainAction.AllMovie
             is MainIntent.SearchMovie -> MainAction.SearchMovie(intent.id)

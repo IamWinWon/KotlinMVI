@@ -9,8 +9,8 @@ package ru.mrwinwon.domain.dto
 
 data class Videocdn (
 
-    val url : String,
-    val quality : String,
-    val duration : String,
-    val voice : String
+    private val url : String,
+    private val quality : String,
+    private val duration : String,
+    private val voice : String
 )

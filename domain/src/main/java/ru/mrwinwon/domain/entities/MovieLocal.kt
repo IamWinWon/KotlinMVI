@@ -1,5 +1,7 @@
 package ru.mrwinwon.domain.entities
 
+import java.io.Serializable
+
 /**
  * Created by Artem Winokurov on 13.04.2021.
  * MrWinWon
@@ -7,16 +9,16 @@ package ru.mrwinwon.domain.entities
  */
 data class MovieLocal(
 
-    val id: Int,
-    val id_kinopoisk: Int,
-    val url: String?,
-    val type: String?,
+    private val id: Int,
+    private val id_kinopoisk: Int,
+    private val url: String?,
+    private val type: String?,
     val title: String?,
-    val title_alternative: String?,
-    val tagline: String?,
-    val description: String?,
-    val year: Int?,
+    private val title_alternative: String?,
+    private val tagline: String?,
+    private val description: String?,
+    private val year: Int?,
     val poster: String?,
-    val trailer: String?,
-    val age: String?
-)
+    private val trailer: String?,
+    private val age: String?
+): Serializable
